@@ -42,7 +42,7 @@ def test_invalid_methods_values(calculator, x, y, ex):
         calculator.power(x, y)
     with pytest.raises(ex):
         if isinstance(x, int):
-            x = 1.0
+            x = str(x)
         calculator.root(x)
 
 
