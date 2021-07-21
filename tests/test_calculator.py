@@ -60,11 +60,18 @@ class TestCalculator:
         with pytest.raises(ex):
             calculator.power(x, y)
 
-    @pytest.mark.parametrize("x, y, ex", invalid_values())
-    def test_invalid_root_values(self, calculator, x, y, ex):
+    @pytest.mark.parametrize(
+        "x, ex",
+        [
+            ("1", TypeError),
+            (1.0, TypeError),
+            ("a", TypeError),
+            ([], TypeError),
+            ({}, TypeError),
+        ],
+    )
+    def test_invalid_root_values(self, calculator, x, ex):
         with pytest.raises(ex):
-            if isinstance(x, int):
-                x = str(x)
             calculator.root(x)
 
     @pytest.mark.parametrize(
